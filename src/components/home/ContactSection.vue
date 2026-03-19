@@ -50,9 +50,9 @@ const directContacts = computed(() => contacts.filter((item) => item.group === '
 <style scoped>
 .contact {
   padding: 18px 12px 22px;
-  background:
+  /* background:
     radial-gradient(circle at 14% -8%, rgba(255, 232, 138, 0.55), transparent 44%),
-    linear-gradient(155deg, #173f2d 0%, #102d21 100%);
+    linear-gradient(155deg, #173f2d 0%, #102d21 100%); */
 }
 
 .contact-card {
