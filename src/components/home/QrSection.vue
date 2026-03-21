@@ -1,5 +1,8 @@
 <script setup>
 import { assets } from '@/data/homeContent'
+const openLink = () => {
+  window.open('https://beacons.ai/huucoeasymua2', '_blank')
+}
 </script>
 
 <template>
@@ -12,9 +15,12 @@ import { assets } from '@/data/homeContent'
           Mở camera điện thoại và hướng vào mã QR để truy cập đầy đủ thông tin, nội dung mở rộng và
           các cập nhật mới nhất của dự án.
         </p>
-        <ul class="qr-tags" aria-label="Lợi ích khi quét mã">
-          <li class="qr-tag">Cập nhật liên tục</li>
-          <li class="qr-tag">Truy cập nhanh trên điện thoại</li>
+        <ul class="qr-tags">
+          <li>
+            <button class="qr-tag" @click="openLink">
+              Truy cập nhanh
+            </button>
+          </li>
         </ul>
       </div>
 
@@ -94,17 +100,77 @@ import { assets } from '@/data/homeContent'
   flex-wrap: wrap;
   gap: 6px;
 }
-
 .qr-tag {
-  font-size: 10px;
+  appearance: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+.qr-tag {
+  font-size: 11px;
   font-weight: 700;
-  color: #173f2d;
-  background: rgba(236, 255, 243, 0.95);
-  border: 1px solid rgba(23, 63, 45, 0.16);
+  color: #fff;
+
+  background: linear-gradient(135deg, #2ea85f, #1f7a47);
   border-radius: 999px;
-  padding: 4px 9px;
+
+  padding: 8px 16px;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  transition: all 0.2s ease;
+}
+.qr-tag:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
+.qr-tag:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.25),
+    inset 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+.qr-tag:focus-visible {
+  box-shadow:
+    0 0 0 3px rgba(46, 168, 95, 0.5),
+    0 6px 14px rgba(0, 0, 0, 0.25);
+}
+.qr-tag {
+  position: relative;
+  overflow: hidden;
+}
+
+.qr-tag::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-20deg);
+}
+
+.qr-tag:hover::after {
+  left: 130%;
+  transition: left 0.6s ease;
+}
 .qr-visual {
   justify-self: center;
   width: 142px;

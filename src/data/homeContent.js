@@ -46,19 +46,19 @@ export const guideSteps = [
   {
     id: '02',
     text: 'Nhấn AR Camera và cấp quyền truy cập camera',
-    align: 'right',
+    align: 'left',
   },
   {
     id: '03',
     text: 'Chiếu camera vào trang truyện có ký hiệu (có thể xoay ngang nếu thiếu không gian)',
     align: 'left',
   },
-  { id: '04', text: 'Tận hưởng những câu chuyện tranh sinh động', align: 'right' },
+  { id: '04', text: 'Tận hưởng những câu chuyện tranh sinh động', align: 'left' },
 ]
 
 export const contacts = [
   { icon: assets.iconFacebook, text: 'Hữu Cơ Easy', group: 'social' },
-  { icon: assets.iconInstagram, text: '@huucoeasyvoigeng', group: 'social' },
+  // { icon: assets.iconInstagram, text: '@huucoeasyvoigeng', group: 'social' },
   { icon: assets.iconTiktok, text: 'huucoeasy', group: 'social' },
   { icon: assets.iconPhone, text: '0243 227 2806', href: 'tel:02432272806', group: 'direct' },
   {
