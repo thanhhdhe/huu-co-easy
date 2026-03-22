@@ -190,10 +190,17 @@ const onTargetLost = (targetIndex) => {
     lostPauseTimer.value = null
   }, TARGET_LOST_GRACE_MS)
 }
+const removeMindARUI = () => {
+  const overlays = document.querySelectorAll(
+    '.mindar-ui-overlay, .mindar-ui-scanning, .mindar-ui-compatibility, .mindar-ui-loading'
+  )
 
+  overlays.forEach(el => el.remove())
+}
 onBeforeUnmount(() => {
   setChromeHidden(false)
   cleanupVideo()
+  removeMindARUI()
 
   const sceneEl = sceneRef.value
   const mindarSystem = sceneEl?.systems?.['mindar-image-system']
@@ -201,6 +208,7 @@ onBeforeUnmount(() => {
   if (mindarSystem?.stop) {
     mindarSystem.stop()
   }
+  hasStarted.value = false
 })
 </script>
 
