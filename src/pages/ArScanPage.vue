@@ -206,12 +206,14 @@ onBeforeUnmount(() => {
   <main class="ar-page">
     <section class="ar-experience">
       <div v-if="showPopup" class="ar-modal">
-        <h2>Trải nghiệm AR</h2>
-        <p>Nhấn Bắt đầu để mở camera và trải nghiệm ngay.</p>
-        <button class="start-btn" type="button" :disabled="isStarting" @click="startAR">
-          {{ isStarting ? 'Đang mở camera...' : 'Bắt đầu' }}
-        </button>
-        <p v-if="errorMessage" class="ar-error">{{ errorMessage }}</p>
+        <div class="ar-modal-card">
+          <h2>Trải nghiệm AR</h2>
+          <p>Nhấn Bắt đầu để mở camera và trải nghiệm ngay.</p>
+          <button class="start-btn" type="button" :disabled="isStarting" @click="startAR">
+            {{ isStarting ? 'Đang mở camera...' : 'Bắt đầu' }}
+          </button>
+          <p v-if="errorMessage" class="ar-error">{{ errorMessage }}</p>
+        </div>
       </div>
 
       <div v-if="hasStarted" id="ar-container" class="ar-container">
@@ -250,7 +252,7 @@ onBeforeUnmount(() => {
                 position="0 0 0"
                 rotation="0 0 0"
                 width="1"
-                height="0.681"
+                height="1.15"
               ></a-plane>
             </a-entity>
           </template>
@@ -306,11 +308,21 @@ onBeforeUnmount(() => {
   z-index: 3;
   display: grid;
   place-content: center;
-  gap: 12px;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.72);
+  background: radial-gradient(circle at 4% 6%, #fff1baa6, #0000 36%), linear-gradient(#f8fff7 0%, #ebf8e7 100%);
+}
+
+.ar-modal-card {
+  width: min(92vw, 460px);
+  display: grid;
+  gap: 12px;
+  padding: 24px 22px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(20, 73, 50, 0.18);
+  box-shadow: 0 24px 48px rgba(16, 47, 34, 0.2);
   text-align: center;
-  color: #fff;
+  color: #12372a;
 }
 
 .ar-modal h2 {
@@ -321,6 +333,7 @@ onBeforeUnmount(() => {
 
 .ar-modal p {
   margin: 0;
+  color: #1f4938;
 }
 
 .start-btn {
@@ -379,16 +392,5 @@ onBeforeUnmount(() => {
   font-weight: 700;
   background: linear-gradient(180deg, #70c256 0%, #f6de66 100%);
   box-shadow: 0 4px 0 #1d583f;
-}
-</style>
-
-<style>
-video[autoplay][muted][playsinline] {
-  max-width: none !important;
-}
-
-.ar-immersive-mode .header,
-.ar-immersive-mode .footer {
-  display: none !important;
 }
 </style>
