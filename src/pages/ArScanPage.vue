@@ -141,22 +141,24 @@ const onTargetFound = (targetIndex) => {
     lastSourceSwitchAt.value = now
     currentVideoSrc.value = nextSrc
 
-    clearCanPlayHandler()
     video.pause()
     video.src = nextSrc
     video.currentTime = 0
 
+    clearCanPlayHandler()
+
     const playWhenReady = () => {
-      video.play().catch((error) => {
-        console.warn('Autoplay error:', error)
-      })
+      if (video.readyState >= 2) {
+        video.muted = false
+        video.play().catch(console.warn)
+      }
     }
 
-    if (video.readyState >= 3) {
+    if (video.readyState >= 2) {
       playWhenReady()
     } else {
       canPlayHandler.value = playWhenReady
-      video.addEventListener('canplay', playWhenReady, { once: true })
+      video.addEventListener('loadeddata', playWhenReady, { once: true })
       video.load()
     }
 
@@ -217,43 +219,21 @@ onBeforeUnmount(() => {
       </div>
 
       <div v-if="hasStarted" id="ar-container" class="ar-container">
-        <a-scene
-          ref="sceneRef"
+        <a-scene ref="sceneRef"
           mindar-image="imageTargetSrc: /ar/targets.mind; maxTrack: 1; missTolerance: 8; filterMinCF: 0.001; filterBeta: 0.01"
-          color-space="sRGB"
-          renderer="colorManagement: true, physicallyCorrectLights"
-          vr-mode-ui="enabled: false"
-          device-orientation-permission-ui="enabled: false"
-          embedded
-        >
+          color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+          device-orientation-permission-ui="enabled: false" embedded>
           <a-assets>
-            <video
-              id="main-video"
-              ref="videoRef"
-              preload="auto"
-              muted
-              loop
-              playsinline
-              webkit-playsinline
-              crossorigin="anonymous"
-            ></video>
+            <video id="main-video" ref="videoRef" preload="auto" muted loop playsinline webkit-playsinline
+              crossorigin="anonymous"></video>
           </a-assets>
 
           <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
           <template v-for="i in TARGET_COUNT" :key="`target-${i}`">
-            <a-entity
-              :mindar-image-target="`targetIndex: ${i - 1}`"
-              @targetFound="() => onTargetFound(i - 1)"
-              @targetLost="() => onTargetLost(i - 1)"
-            >
-              <a-plane
-                src="#main-video"
-                position="0 0 0"
-                rotation="0 0 0"
-                width="1"
-                height="1.15"
-              ></a-plane>
+            <a-entity :mindar-image-target="`targetIndex: ${i - 1}`" @targetFound="() => onTargetFound(i - 1)"
+              @targetLost="() => onTargetLost(i - 1)">
+              <a-plane src="#main-video" position="0 0 0" rotation="0 0 0" width="1" height="1.15"></a-plane>
             </a-entity>
           </template>
         </a-scene>
