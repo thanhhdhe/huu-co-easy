@@ -1,4 +1,4 @@
-import heroImage from '@/assets/images/hero.png'
+import heroImage from '@/assets/images/hero.jpeg'
 import logoImage from '@/assets/images/logo.png'
 import bookCoverImage from '@/assets/images/book-cover.jpeg'
 import introSceneImage from '@/assets/images/intro-scene.jpeg'
