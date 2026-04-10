@@ -1,7 +1,7 @@
 <script setup>
 import { nextTick, onBeforeUnmount, ref } from 'vue'
 
-const TARGET_COUNT = 7
+const TARGET_COUNT = 19
 const availableVideos = [
   '/ar/output_1.mp4',
   '/ar/output_2.mp4',
