@@ -9,7 +9,19 @@ const availableVideos = [
   '/ar/output_4.mp4',
   '/ar/output_5.mp4',
   '/ar/output_6.mp4',
-  '/ar/output_7.mp4'
+  '/ar/output_7.mp4',
+  '/ar/output_8.mp4',
+  '/ar/output_9.mp4',
+  '/ar/output_10.mp4',
+  '/ar/output_11.mp4',
+  '/ar/output_12.mp4',
+  '/ar/output_13.mp4',
+  '/ar/output_14.mp4',
+  '/ar/output_15.mp4',
+  '/ar/output_16.mp4',
+  '/ar/output_17.mp4',
+  '/ar/output_18.mp4',
+  '/ar/output_19.mp4'
 ]
 const AR_IMMERSIVE_CLASS = 'ar-immersive-mode'
 const TARGET_LOST_GRACE_MS = 450
