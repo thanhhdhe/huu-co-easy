@@ -56,6 +56,15 @@ const resolveVideoByTarget = (targetIndex) => {
   return availableVideos[normalizedIndex]
 }
 
+const getVideoDimensions = (targetIndex) => {
+  const actualIndex = targetIndex + 1
+  // Videos 8-19 have aspect ratio 499x736, others have 1x1.15
+  if (actualIndex >= 8 && actualIndex <= 19) {
+    return { width: 1, height: 1.475 } // 736/499 ≈ 1.475
+  }
+  return { width: 1, height: 1.15 }
+}
+
 const clearCanPlayHandler = () => {
   const video = getMainVideo()
 
@@ -253,7 +262,7 @@ onBeforeUnmount(() => {
           <template v-for="i in TARGET_COUNT" :key="`target-${i}`">
             <a-entity :mindar-image-target="`targetIndex: ${i - 1}`" @targetFound="() => onTargetFound(i - 1)"
               @targetLost="() => onTargetLost(i - 1)">
-              <a-plane src="#main-video" position="0 0 0" rotation="0 0 0" width="1" height="1.15"></a-plane>
+              <a-plane src="#main-video" position="0 0 0" rotation="0 0 0" :width="getVideoDimensions(i - 1).width" :height="getVideoDimensions(i - 1).height"></a-plane>
             </a-entity>
           </template>
         </a-scene>
