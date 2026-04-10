@@ -58,8 +58,8 @@ const resolveVideoByTarget = (targetIndex) => {
 
 const getVideoDimensions = (targetIndex) => {
   const actualIndex = targetIndex + 1
-  // Videos 8-19 have aspect ratio 499x736, others have 1x1.15
-  if (actualIndex >= 8 && actualIndex <= 19) {
+  // Videos 1-2 and 10-19 have aspect ratio 499x736, others keep 1x1.15
+  if ((actualIndex >= 1 && actualIndex <= 2) || (actualIndex >= 10 && actualIndex <= 19)) {
     return { width: 1, height: 1.475 } // 736/499 ≈ 1.475
   }
   return { width: 1, height: 1.15 }
